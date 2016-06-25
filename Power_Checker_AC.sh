@@ -8,7 +8,15 @@ do
 
   if [[ "$AC_POWER" == "Yes" ]]
   then
-    osascript -e 'tell application "Messages" to send "Hello! Power is back" to buddy "Sriram Rajan"'
+    if test -e index.html  
+     then
+        rm index.html;
+    fi
+    /usr/bin/curl -O http://www.google.com/index.html
+    if [ $? -eq 0 ]
+    then
+        osascript Apple_message.scpt
+    fi
     if [ $? -eq 0 ] #Maybe wifi connection will resolve in 10 min
     then
       break
